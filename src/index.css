@@ -1,0 +1,74 @@
+@import 'tailwindcss';
+
+@theme {
+  --color-obsidian: #0a0908;
+  --color-charcoal: #131110;
+  --color-ivory: #f2ede3;
+  --color-silver: #9d9a90;
+  --color-gold: #d2a44d;
+  --font-display: 'Fraunces', Georgia, serif;
+  --font-body: 'Inter', ui-sans-serif, system-ui;
+  --font-mono: 'JetBrains Mono', ui-monospace, monospace;
+}
+
+:root {
+  color-scheme: dark;
+}
+html {
+  background: var(--color-obsidian);
+}
+body {
+  margin: 0;
+  font-family: var(--font-body);
+  color: var(--color-ivory);
+  overflow-x: hidden;
+}
+
+/* fine film grain overlay */
+.grain::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 9999;
+  opacity: 0.05;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  mix-blend-mode: overlay;
+}
+
+/* editorial section label */
+.kicker {
+  font-family: var(--font-mono);
+  text-transform: uppercase;
+  letter-spacing: 0.35em;
+  font-size: 0.65rem;
+  color: var(--color-silver);
+}
+
+/* thin divider */
+.rule {
+  border-top: 1px solid rgb(242 237 227 / 0.12);
+}
+
+/* visible focus for keyboard users */
+:focus-visible {
+  outline: 2px solid var(--color-gold);
+  outline-offset: 3px;
+}
+
+/* selection */
+::selection {
+  background: var(--color-gold);
+  color: var(--color-obsidian);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
